@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container, ListGroup, Navbar } from "react-bootstrap";
-import TodoItem from "./components/TodoItem";
-import { Todo } from "./interfaces/Todo";
+import { Container } from "react-bootstrap";
+import Header from "./components/Header";
+import TodoForm from "./components/TodoForm";
+import TodosTable from "./components/TodosTable";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -15,14 +16,9 @@ function App() {
 
   return (
     <Container>
-      <Navbar>
-        <Navbar.Brand className="text-primary">Todo List</Navbar.Brand>
-      </Navbar>
-      <ListGroup>
-        {todos.map((todo: Todo) => (
-          <TodoItem todo={todo} key={todo.id} />
-        ))}
-      </ListGroup>
+      <Header />
+      <TodoForm />
+      <TodosTable todos={todos} />
     </Container>
   );
 }

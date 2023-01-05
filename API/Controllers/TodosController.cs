@@ -18,7 +18,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IEnumerable<Todo>> Get()
         {
-            return await _context.Todos.ToListAsync();
+            return await _context.Todos.OrderBy(todo => todo.CreatedOn).ToListAsync();
         }
 
         [HttpGet("{id}")]

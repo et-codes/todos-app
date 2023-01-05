@@ -19,7 +19,7 @@ function App() {
   function updateTodo(todoToUpdate: Todo) {
     const updatedTodos = todos.map((todo: Todo) => {
       if (todo.id === todoToUpdate.id) {
-        axios.put(`/api/todos/${todo.id}`, todoToUpdate);
+        axios.put(`/api/todos/${todoToUpdate.id}`, todoToUpdate);
         return todoToUpdate;
       } else {
         return todo;

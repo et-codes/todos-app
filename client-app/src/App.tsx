@@ -11,7 +11,7 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/todos").then((response) => {
+    axios.get("/api/todos").then((response) => {
       setTodos(response.data);
     });
   }, []);
@@ -19,7 +19,7 @@ function App() {
   function updateTodo(todoToUpdate: Todo) {
     const updatedTodos = todos.map((todo: Todo) => {
       if (todo.id === todoToUpdate.id) {
-        axios.put(`http://localhost:5000/api/todos/${todo.id}`, todoToUpdate);
+        axios.put(`/api/todos/${todo.id}`, todoToUpdate);
         return todoToUpdate;
       } else {
         return todo;
@@ -29,7 +29,7 @@ function App() {
   }
 
   function deleteTodo(todoToDelete: Todo) {
-    axios.delete(`http://localhost:5000/api/todos/${todoToDelete.id}`);
+    axios.delete(`/api/todos/${todoToDelete.id}`);
     const updatedTodos = todos.filter(
       (todo: Todo) => todo.id !== todoToDelete.id
     );

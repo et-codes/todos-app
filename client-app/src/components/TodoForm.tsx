@@ -11,6 +11,7 @@ export default function TodoForm(props: TodoFormProps) {
 
   useEffect(() => {
     if (todo) setEditMode(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

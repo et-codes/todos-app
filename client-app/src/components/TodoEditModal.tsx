@@ -13,8 +13,8 @@ export default function TodoEditModal(props: TodoEditModalProps) {
   const todoFormProps: TodoFormProps = {
     createTodo: createTodo,
     updateTodo: updateTodo,
-    todo: todo,
     openModal: setEditMode,
+    todo: todo,
   };
 
   return (

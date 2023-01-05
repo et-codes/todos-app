@@ -1,14 +1,18 @@
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import TodoEditModalProps from "../interfaces/TodoEditModalProps";
 import TodoProps from "../interfaces/TodoProps";
+import TodoEditModal from "./TodoEditModal";
 
 export default function TodoItem(todoProps: TodoProps) {
+  const [editMode, setEditMode] = useState(false);
   const { todo, updateTodo, deleteTodo } = todoProps;
   // prettier-ignore
-  const createdOn = todo.createdOn 
+  const createdOnString = todo.createdOn 
     ? new Date(todo.createdOn).toLocaleDateString()
     : "";
   // prettier-ignore
-  const dueDate = todo.dueDate
+  const dueDateString = todo.dueDate
     ? (<span>{new Date(todo.dueDate).toLocaleDateString()}</span>) 
     : (<span className="text-muted">none</span>);
 
@@ -24,8 +28,14 @@ export default function TodoItem(todoProps: TodoProps) {
   }
 
   function handleEdit(): void {
-    throw new Error("Not implemented.");
+    setEditMode(true);
   }
+
+  const todoEditModalProps: TodoEditModalProps = {
+    editMode: editMode,
+    setEditMode: setEditMode,
+    todo: todo,
+  };
 
   return (
     <tr>
@@ -38,8 +48,8 @@ export default function TodoItem(todoProps: TodoProps) {
         />
       </td>
       <td className={style}>{todo.text}</td>
-      <td className={`${style} text-center`}>{createdOn}</td>
-      <td className={`${style} text-center`}>{dueDate}</td>
+      <td className={`${style} text-center`}>{createdOnString}</td>
+      <td className={`${style} text-center`}>{dueDateString}</td>
       <td className="text-center">
         <Button
           size="sm"
@@ -58,6 +68,7 @@ export default function TodoItem(todoProps: TodoProps) {
           Delete
         </Button>
       </td>
+      <TodoEditModal {...todoEditModalProps} />
     </tr>
   );
 }

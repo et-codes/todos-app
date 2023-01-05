@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import TodoForm from "./components/TodoForm";
 import TodosTable from "./components/TodosTable";
 import Todo from "./interfaces/Todo";
+import TodoFormProps from "./interfaces/TodoFormProps";
 import TodosProps from "./interfaces/TodosProps";
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
     });
   }
 
+  const todoFormProps: TodoFormProps = {
+    createTodo: createTodo,
+  };
+
   const todosProps: TodosProps = {
     todos: todos,
     updateTodo: updateTodo,
@@ -51,7 +56,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <TodoForm createTodo={createTodo} />
+      <TodoForm {...todoFormProps} />
       <TodosTable {...todosProps} />
     </Container>
   );

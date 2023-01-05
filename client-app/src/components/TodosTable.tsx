@@ -11,11 +11,11 @@ export default function TodosTable(todosProps: TodosProps) {
     <Table bordered hover>
       <thead>
         <tr>
-          <th>Complete</th>
+          <th className="text-center">Complete</th>
           <th>Task</th>
-          <th>Created On</th>
-          <th>Due Date</th>
-          <th>Action</th>
+          <th className="text-center">Created On</th>
+          <th className="text-center">Due Date</th>
+          <th className="text-center">Action</th>
         </tr>
       </thead>
       <tbody>

@@ -34,12 +34,13 @@ export default function TodoItem(todoProps: TodoProps) {
           id={todo.id}
           checked={todo.isComplete}
           onChange={toggleComplete}
+          className="text-center"
         />
       </td>
       <td className={style}>{todo.text}</td>
-      <td className={style}>{createdOn}</td>
-      <td className={style}>{dueDate}</td>
-      <td>
+      <td className={`${style} text-center`}>{createdOn}</td>
+      <td className={`${style} text-center`}>{dueDate}</td>
+      <td className="text-center">
         <Button
           size="sm"
           className="mx-1"

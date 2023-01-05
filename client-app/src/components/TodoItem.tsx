@@ -3,20 +3,25 @@ import { Button, Form } from "react-bootstrap";
 import TodoEditModalProps from "../interfaces/TodoEditModalProps";
 import TodoProps from "../interfaces/TodoProps";
 import TodoEditModal from "./TodoEditModal";
+import "../styles/strikethrough.css";
 
-export default function TodoItem(todoProps: TodoProps) {
+export default function TodoItem(props: TodoProps) {
   const [editMode, setEditMode] = useState(false);
-  const { todo, updateTodo, deleteTodo } = todoProps;
-  // prettier-ignore
-  const createdOnString = todo.createdOn 
-    ? new Date(todo.createdOn).toLocaleDateString()
-    : "";
-  // prettier-ignore
-  const dueDateString = todo.dueDate
-    ? (<span>{new Date(todo.dueDate).toLocaleDateString()}</span>) 
-    : (<span className="text-muted">none</span>);
+  const { todo, updateTodo, deleteTodo, createTodo } = props;
 
-  const style = todo.isComplete ? "text-muted" : "";
+  const createdOnString = todo.createdOn
+    ? new Date(todo.createdOn).toLocaleDateString("en-US", { timeZone: "UTC" })
+    : "";
+
+  const dueDateString = todo.dueDate ? (
+    <span>
+      {new Date(todo.dueDate).toLocaleDateString("en-US", { timeZone: "UTC" })}
+    </span>
+  ) : (
+    <span className="text-muted">none</span>
+  );
+
+  const style = todo.isComplete ? "strikethrough text-muted" : "";
 
   function toggleComplete(): void {
     todo.isComplete = !todo.isComplete;
@@ -35,6 +40,8 @@ export default function TodoItem(todoProps: TodoProps) {
     editMode: editMode,
     setEditMode: setEditMode,
     todo: todo,
+    updateTodo: updateTodo,
+    createTodo: createTodo,
   };
 
   return (

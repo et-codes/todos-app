@@ -45,12 +45,14 @@ function App() {
 
   const todoFormProps: TodoFormProps = {
     createTodo: createTodo,
+    updateTodo: updateTodo,
   };
 
   const todosProps: TodosProps = {
     todos: todos,
     updateTodo: updateTodo,
     deleteTodo: deleteTodo,
+    createTodo: createTodo,
   };
 
   return (

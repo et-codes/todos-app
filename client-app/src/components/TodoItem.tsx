@@ -3,11 +3,16 @@ import TodoProps from "../interfaces/TodoProps";
 
 export default function TodoItem(todoProps: TodoProps) {
   const { todo, updateTodo, deleteTodo } = todoProps;
-  const createdOn = new Date(todo.createdOn).toLocaleDateString();
+  // prettier-ignore
+  const createdOn = todo.createdOn 
+    ? new Date(todo.createdOn).toLocaleDateString()
+    : "";
   // prettier-ignore
   const dueDate = todo.dueDate
     ? (<span>{new Date(todo.dueDate).toLocaleDateString()}</span>) 
     : (<span className="text-muted">none</span>);
+
+  const style = todo.isComplete ? "text-muted" : "";
 
   function toggleComplete(): void {
     todo.isComplete = !todo.isComplete;
@@ -31,9 +36,9 @@ export default function TodoItem(todoProps: TodoProps) {
           onChange={toggleComplete}
         />
       </td>
-      <td>{todo.text}</td>
-      <td>{createdOn}</td>
-      <td>{dueDate}</td>
+      <td className={style}>{todo.text}</td>
+      <td className={style}>{createdOn}</td>
+      <td className={style}>{dueDate}</td>
       <td>
         <Button
           size="sm"

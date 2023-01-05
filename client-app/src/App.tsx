@@ -36,19 +36,22 @@ function App() {
     setTodos(updatedTodos);
   }
 
-  function createTodo(todoToCreate: Todo) {}
+  function createTodo(todoToCreate: Todo) {
+    axios.post("/api/todos", todoToCreate).then((response) => {
+      setTodos((prevTodos) => [...prevTodos, response.data]);
+    });
+  }
 
   const todosProps: TodosProps = {
     todos: todos,
     updateTodo: updateTodo,
     deleteTodo: deleteTodo,
-    createTodo: createTodo,
   };
 
   return (
     <Container>
       <Header />
-      <TodoForm />
+      <TodoForm createTodo={createTodo} />
       <TodosTable {...todosProps} />
     </Container>
   );

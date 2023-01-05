@@ -1,5 +1,3 @@
-interface TodoFormProps {}
-
-export default function TodoForm({}: TodoFormProps) {
-  return <div>TodoForm</div>;
+export default function TodoForm() {
+  return <div>Todo form goes here...</div>;
 }

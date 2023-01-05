@@ -14,6 +14,14 @@ export default function TodoItem(todoProps: TodoProps) {
     updateTodo(todo);
   }
 
+  function handleDelete(): void {
+    deleteTodo(todo);
+  }
+
+  function handleEdit(): void {
+    throw new Error("Not implemented.");
+  }
+
   return (
     <tr>
       <td>
@@ -27,14 +35,19 @@ export default function TodoItem(todoProps: TodoProps) {
       <td>{createdOn}</td>
       <td>{dueDate}</td>
       <td>
-        <Button size="sm" className="mx-1" variant="outline-primary">
+        <Button
+          size="sm"
+          className="mx-1"
+          variant="outline-primary"
+          onClick={handleEdit}
+        >
           Edit
         </Button>
         <Button
           size="sm"
           className="mx-1"
           variant="danger"
-          onClick={() => deleteTodo(todo)}
+          onClick={handleDelete}
         >
           Delete
         </Button>

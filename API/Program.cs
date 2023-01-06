@@ -33,7 +33,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("CorsPolicy");
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 
 // Apply latest database migration/creation if needed
 using var scope = app.Services.CreateScope();

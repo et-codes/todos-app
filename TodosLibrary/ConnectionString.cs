@@ -2,9 +2,9 @@
 {
     public class ConnectionString
     {
-        public static string Parse(string uriString)
+        public static string Parse(string urlString)
         {
-            var uri = new Uri(uriString);
+            var uri = new Uri(urlString);
             var db = uri.AbsolutePath.Trim('/');
             var user = uri.UserInfo.Split(':')[0];
             var passwd = uri.UserInfo.Split(':')[1];

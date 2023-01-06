@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoDbContext>(opt =>
 {
-    string urlString = builder.Configuration["TodosApp:ElephantSqlUrl"];
+    string urlString = builder.Configuration.GetConnectionString("DefaultConnection");
     opt.UseNpgsql(ConnectionString.Parse(urlString));
 });
 builder.Services.AddCors(opt =>

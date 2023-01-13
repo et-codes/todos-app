@@ -1,34 +1,36 @@
-namespace TodosLibrary
+using Core.Entities;
+
+namespace Core.Database
 {
-  public class Seed
+    public class Seed
     {
         public static async Task SeedData(TodoDbContext context)
         {
             if (context.Todos.Any()) return;
 
-            var todos = new List<Todo>
+            var todos = new List<TodoEntity>
             {
-                new Todo
+                new TodoEntity
                 {
                     Text = "Sample todo 1",
                     DueDate = DateTime.UtcNow.AddDays(1),
                 },
-                new Todo
+                new TodoEntity
                 {
                     Text = "Sample todo 2",
                     DueDate = DateTime.UtcNow.AddDays(2),
                 },
-                new Todo
+                new TodoEntity
                 {
                     Text = "Sample todo 3",
                     DueDate = DateTime.UtcNow.AddDays(3),
                 },
-                new Todo
+                new TodoEntity
                 {
                     Text = "Sample todo 4",
                     DueDate = DateTime.UtcNow.AddDays(4),
                 },
-                new Todo
+                new TodoEntity
                 {
                     Text = "Sample todo 5",
                     DueDate = DateTime.UtcNow,

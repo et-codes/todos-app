@@ -1,23 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace TodosLibrary
+namespace Core.Database
 {
     public class TodoDbContext : DbContext
     {
         public TodoDbContext(DbContextOptions<TodoDbContext> options)
-            :base(options)
+            : base(options)
         {
         }
 
-        public DbSet<Todo> Todos { get; set; }
+        public DbSet<TodoEntity> Todos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Todo>()
+            modelBuilder.Entity<TodoEntity>()
                 .Property(t => t.IsComplete)
                 .HasDefaultValue(false);
 
-            modelBuilder.Entity<Todo>()
+            modelBuilder.Entity<TodoEntity>()
                 .Property(t => t.CreatedOn)
                 .HasDefaultValueSql("now()");
         }

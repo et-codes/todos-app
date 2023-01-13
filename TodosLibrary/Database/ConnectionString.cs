@@ -1,4 +1,4 @@
-﻿namespace TodosLibrary
+﻿namespace Core.Database
 {
     public class ConnectionString
     {

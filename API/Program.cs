@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TodosLibrary;
+using Core.Database;
+using API.Services;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,10 @@ builder.Services.AddCors(opt =>
         policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
     });
 });
+builder.Services.AddScoped<ITodoQueryService, TodoQueryService>();
+builder.Services.AddScoped<ITodoCreationService, TodoCreationService>();
+builder.Services.AddScoped<ITodoUpdateService, TodoUpdateService>();
+builder.Services.AddScoped<ITodoDeleteService, TodoDeleteService>();
 
 var app = builder.Build();
 
@@ -38,6 +44,8 @@ app.UseStaticFiles();
 
 app.MapControllers();
 app.MapFallbackToController("Index", "Fallback");
+
+app.UseExceptionHandlerMiddleware();
 
 // Apply latest database migration/creation if needed
 using var scope = app.Services.CreateScope();
